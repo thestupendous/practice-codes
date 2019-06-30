@@ -6,7 +6,8 @@
  * second contains tens digit and so on.
  * Result is stored in a third linked list.
  *
- *This code only runs when the lengths of both the initial numbers are same.
+ *This code is complete solution to the
+ *problem, it works for all kinds of inputs.
 */
 
  #include<iostream>
@@ -46,6 +47,46 @@ public:
 			q=q->next;
 			cout<<" sum,carry: "<<sum<<' '<<carry<<endl;
 		}
+		if(p==NULL and q==NULL)
+		{
+			if(carry==1)
+				r->val = 1;
+			else
+			{
+				ListNode * x = i;
+				while(x->next->next != NULL) x=x->next;
+				x->next = NULL;
+			}
+			return i;
+		}
+		else if(p==NULL)
+		{
+			while(q!=NULL)
+			{
+				b = q->val;
+				sum = carry + b;
+				if(sum>9) { sum%=10; carry=1; }
+				else carry=0;
+				r->val = sum;
+				r->next = new ListNode(0);
+				r=r->next;
+				q=q->next;
+			}
+		}
+		else if(q==NULL)
+		{
+			while(p!=NULL)
+			{
+				a = p->val;
+				sum = carry + a;
+				if(sum>9) { sum%=10; carry=1; }
+				else carry=0;
+				r->val = sum;
+				r->next = new ListNode(0);
+				r=r->next;
+				p=p->next;
+			}
+		}
 		if(carry==1)
 			r->val = 1;
 		else
@@ -55,6 +96,7 @@ public:
 			x->next = NULL;
 		}
 		return i;
+
     }
 };
 
@@ -88,16 +130,16 @@ int main()
 		cin>>v;
 		insert(q,v);
 	}
-	/*
+	
 	cout<<"-----------\nprinting\n";
 	print(p);
 	print(q);
-	*/
-	cout<<"----------\nans\n";
+	
+	cout<<"----------\n";
 	Solution sol;
 	r = sol.addTwoNumbers(p,q);
+	cout<<"----------\nans\n";
 	print(r);
-
 	return 0;
 }
 
