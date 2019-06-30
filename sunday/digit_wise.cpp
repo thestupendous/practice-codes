@@ -1,10 +1,12 @@
 /*
- * adding two numbers digit by digit
+ * adding two numbers digit by  digit
  * using linked lists. The two linked
  * lists store numbers in reverse order,
  * i.e, first node contains ones digit,
  * second contains tens digit and so on.
  * Result is stored in a third linked list.
+ *
+ *This code only runs when the lengths of both the initial numbers are same.
 */
 
  #include<iostream>
