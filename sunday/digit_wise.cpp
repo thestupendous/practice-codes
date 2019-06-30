@@ -1,5 +1,13 @@
-#include<iostream>
-//changed
+/*
+ * adding two numbers digit by digit
+ * using linked lists. The two linked
+ * lists store numbers in reverse order,
+ * i.e, first node contains ones digit,
+ * second contains tens digit and so on.
+ * Result is stored in a third linked list.
+*/
+
+ #include<iostream>
 using namespace std;
 struct ListNode {
       int val;
