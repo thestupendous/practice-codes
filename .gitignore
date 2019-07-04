@@ -1,6 +1,8 @@
 *.out
 *.o
 *.exe
+*.class
+*.pyc
 del.cpp
 del.c
 del
