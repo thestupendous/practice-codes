@@ -13,25 +13,18 @@
 using std::map,std::string,std::cin,std::cout;
 
 std::string_view longestSubstr(std::string_view inp){
+	// in window
 	map<char,bool> alphabets;
-	
-	unsigned startInd{0}, diff{0}, maxDiff{0};
-	unsigned bestStart{0}, bestEnd{0}, bestDiff{0};
-	for (unsigned i{0}; i<inp.size(); i++) {
-		if ( alphabets.find(inp[i]) != alphabets.end()) {
-			// reset
+	unsigned start{0},changeInd{0};
+	for(unsigned i{0};i<inp.size();i++){
+		if (alphabets[inp[i]] == true) {
+			while(inp[start]!=inp[i]){
+				if(
 
-			startInd+=1;
-		} 
-		alphabets[inp[i]] = true;
-		if (i-startInd > bestDiff) {
-			bestDiff = i-startInd;
-			bestStart = startInd;
-		}
-	}
-	cout << "maxdiff " << maxDiff << '\n';
+			}
+				
 
-	return inp.substr(bestStart,maxDiff+1);
+
 
 }
 
