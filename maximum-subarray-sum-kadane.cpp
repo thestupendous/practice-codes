@@ -49,8 +49,8 @@ SubArray* maxSubarraySum(int arr[],int size) {
 		if(sum<=0) { 
 			// reset left
 			left = i;
+			sum=0;
 		}
-		
 		
 		sum += arr[i];
 		if (result->maxSum<sum) {
@@ -67,9 +67,33 @@ int main(){
 	SubArray* maxResult;
 	maxResult=maxSubarraySum(arr,7);
 	cout << maxResult->maxSum << '\n';
-	cout << maxResult->maxLeft << '\n';
-	cout << maxResult->maxRight << '\n';
-
+	cout << maxResult->maxLeft << ',' << maxResult->maxRight << '\n';
 	maxResult->~SubArray();
+	cout<<'\n';
+
+	int arr2[] {200,-100,300,-20000,50,50,50};
+	SubArray* maxResult2;
+	maxResult2=maxSubarraySum(arr2,7);
+	cout << maxResult2->maxSum << '\n';
+	cout << maxResult2->maxLeft << ',' << maxResult2->maxRight << '\n';
+	maxResult2->~SubArray();
+	cout<<'\n';
+
+	int arr3[] {200,-100,300,-20000,50,50,50,100,100};
+	SubArray* maxResult3;
+	maxResult3=maxSubarraySum(arr3,9);
+	cout << maxResult3->maxSum << '\n';
+	cout << maxResult3->maxLeft << ',' << maxResult3->maxRight << '\n';
+	maxResult3->~SubArray();
+	cout<<'\n';
+
+	int arr4[] {200,-100,300,-20000,50,50,50,100,151};
+	SubArray* maxResult4;
+	maxResult4=maxSubarraySum(arr4,9);
+	cout << maxResult4->maxSum << '\n';
+	cout << maxResult4->maxLeft << ',' << maxResult4->maxRight << '\n';
+	maxResult4->~SubArray();
+	cout<<'\n';
+
 	return 0;
 }
