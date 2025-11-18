@@ -4,72 +4,77 @@
 using namespace std;
 class Solution {
 	public:
-		int compress(vector<char>& chars) {
-			char prev{chars[0]},toAppend{'\0'};
-			unsigned currCount{0},toPlace{0};
-			// bool firstSame{false};
-			for (size_t i{1};i<chars.size();i++) {
-				if(chars[i] == prev) {
-					currCount++;
-					if(currCount==1) {
-						// first repetition found
-						cout << "setting toplace " << toPlace << 
-							"at i : " << i << '\n';
-						toPlace=i-1;
-					}
-
+		int compress(const vector<char>& chars) {
+			int len(chars.size());
+			string ans{""};
+			unsigned prevCount{0};
+			int prev{0};
+			for(int i{1};i<len;i++) {
+				if (chars[i] == chars[prev]) {
+					prevCount++;
 				} else {
-					// now fill out all the repititions with count
-					if (currCount>1) {
-						cout << "group processing" << i << '\n';
-						chars[toPlace++] = prev;
-						// now to place number to char array
-						string digits{std::to_string(currCount)};
-						for (char ch: digits) {
-							chars[toPlace++] = ch;
-						}
-						currCount = 0;
-					} else {
-						// when the char appeared only once
-						cout << "single character pushing" << i << '\n';
-						chars[toPlace++] = prev;
-						if(i==chars.size()-1)
-							chars[toPlace++] = chars[i];
+					if (prevCount>0) {
+						ans += chars[prev] + to_string(1+prevCount);
+					} else if(prevCount==0) {
+						ans += chars[prev];
 					}
+					prevCount =0;
 				}
-				prev=chars[i];
+				prev=i;
 			}
-			return toPlace;
+			cout << "len, chars[len-1], chars[len-2] : " <<len<< ','<<
+				len-1<<","<<len-2 << '\n';
+			if (len-2>=0 && chars[len-1]==chars[len-2]) {
+				if (prevCount>0) {
+					ans += chars[prev] + to_string(1+prevCount);
+				}	
+			} else {
+				ans += chars[prev];
+			}
+
+
+			cout << "ans: " << ans << '\n';
+			return ans.size();
 		}
 };
 
 int main() {
 	Solution s;
-#if 0
+#if 1
 	vector<char> v1{'a','a','a','a','m','n'};
-	int ans1 = s.compress(v1);
 	for (char ch: v1) {
 		cout << ch << ',';
 	}
 	cout << '\n';
+	int ans1 = s.compress(v1);
 	cout << ans1 << '\n';
 
 	vector<char> v2{'a','b','c','p','g'};
-	int ans2 = s.compress(v2);
 	for (char ch: v2) {
 		cout << ch << ',';
 	}
 	cout << '\n';
+	int ans2 = s.compress(v2);
 	cout << ans2 << '\n';
 #endif
 
-	vector<char> v3{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
-	int ans3 = s.compress(v3);
+	// vector<char> v3{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+	vector<char> v3{'a','a'};
 	for (char ch: v3) {
 		cout << ch << ',';
 	}
 	cout << '\n';
+	int ans3 = s.compress(v3);
 	cout << ans3 << '\n';
+
+	vector<char> v4{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+	for (char ch: v4) {
+		cout << ch << ',';
+	}
+	cout << '\n';
+	int ans4 = s.compress(v4);
+	cout << ans4 << '\n';
+
 
 	return 0;
 }
